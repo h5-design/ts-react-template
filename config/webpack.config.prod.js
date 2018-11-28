@@ -24,6 +24,8 @@ const env = getClientEnvironment(publicUrl);
 const merge = require('webpack-merge');
 const baseWebpackConfig = require('./webpack.config.base');
 
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
 if (env.stringified['process.env'].NODE_ENV !== '"production"') {
   throw new Error('Production builds must have NODE_ENV=production.');
 }
@@ -186,6 +188,8 @@ module.exports = merge(baseWebpackConfig, {
             loader: getStyleLoaders({
               importLoaders: 1,
               sourceMap: shouldUseSourceMap,
+              modules:true,
+              localIdentName:'[name]__[local]-[hash:base64:6]'
             }),
             sideEffects: true,
           },
@@ -205,6 +209,8 @@ module.exports = merge(baseWebpackConfig, {
               {
                 importLoaders: 2,
                 sourceMap: shouldUseSourceMap,
+                modules:true,
+                localIdentName:'[name]__[local]-[hash:base64:6]'
               },
               'sass-loader'
             ),
@@ -221,6 +227,32 @@ module.exports = merge(baseWebpackConfig, {
               },
               'sass-loader'
             ),
+          },
+          {
+              test: /\.(less)$/,
+              exclude: /\.module\.(less)$/,
+              loader: getStyleLoaders(
+                  {
+                      importLoaders: 2,
+                      sourceMap: shouldUseSourceMap,
+                      modules:true,
+                      localIdentName:'[name]__[local]-[hash:base64:6]'
+                  },
+                  'less-loader'
+              ),
+              sideEffects: true,
+          },
+          {
+              test: /\.module\.(less)$/,
+              loader: getStyleLoaders(
+                  {
+                      importLoaders: 2,
+                      sourceMap: shouldUseSourceMap,
+                      modules: true,
+                      getLocalIdent: getCSSModuleLocalIdent,
+                  },
+                  'less-loader'
+              ),
           },
           {
               test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
@@ -276,5 +308,7 @@ module.exports = merge(baseWebpackConfig, {
       fileName: 'asset-manifest.json',
       publicPath: publicPath,
     }),
+    //输出一个可视化的打包
+    new BundleAnalyzerPlugin(),
   ].filter(Boolean),
 });
