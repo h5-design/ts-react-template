@@ -45,16 +45,16 @@ module.exports = {
             { parser: { requireEnsure: false } },
             //代码检查
             {
-                test: /\.(js|mjs|jsx)$/,
+                test: /\.(js|mjs|jsx|ts|tsx)$/,
                 enforce: 'pre',
                 use: [
                     {
+                        loader: require.resolve('eslint-loader'),
                         options: {
                             formatter: require.resolve('react-dev-utils/eslintFormatter'),
                             eslintPath: require.resolve('eslint'),
 
-                        },
-                        loader: require.resolve('eslint-loader'),
+                        }
                     },
                 ],
                 include: paths.appSrc,

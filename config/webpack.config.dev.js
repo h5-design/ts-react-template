@@ -82,6 +82,7 @@ module.exports = merge(baseWebpackConfig, {
               ),
               plugins: [
                 [
+                  //集成 ts loader
                   require.resolve('babel-plugin-named-asset-import'),
                   {
                     loaderMap: {
