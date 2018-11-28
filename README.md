@@ -1,2 +1,14 @@
 # ts-react-template
-一个ts 的react 模板
+
+
+## react && ts 脚手架
+
+
+## Change
+
+[CHANGELOG]('./CHANGELOG.md')
+
+## Todo
+
+[TODO]('./TODO.md')
+

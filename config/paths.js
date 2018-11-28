@@ -38,6 +38,7 @@ function getServedPath(appPackageJson) {
   return ensureSlash(servedUrl, true);
 }
 
+//可忽略后缀名称
 const moduleFileExtensions = [
   'web.mjs',
   'mjs',
@@ -65,7 +66,7 @@ const resolveModule = (resolveFn, filePath) => {
   return resolveFn(`${filePath}.js`);
 };
 
-// config after eject: we're in ./config/
+// 相关的 path 变量
 module.exports = {
   dotenv: resolveApp('.env'),
   appPath: resolveApp('.'),

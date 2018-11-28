@@ -187,15 +187,4 @@ module.exports = merge(baseWebpackConfig, {
       publicPath: publicPath,
     }),
   ].filter(Boolean),
-
-  // 有些库虽然引用了。但是并没有用到，在游览器中将这个变量 变为 'empty' 字符串
-  node: {
-    dgram: 'empty',
-    fs: 'empty',
-    net: 'empty',
-    tls: 'empty',
-    child_process: 'empty',
-  },
-  //性能监控关闭，因为有自己的性能监控
-  performance: false,
 });
