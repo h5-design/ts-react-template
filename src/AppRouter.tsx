@@ -5,13 +5,13 @@ import AsyncComponent from './utils/AsyncComponent'
 const AppRouter = () => (
     <Router>
         <div>
-            <nav>
+            <nav style={{background: '#99494a'}}>
                 <ul style={{display:'flex',listStyle: 'none', margin: '0'}}>
                     <li style={{ padding: '6px 10px' }}>
-                        <Link to="/">ClassPage</Link>
+                        <Link style={{ color: '#fff'}} to="/">ClassPage</Link>
                     </li>
                     <li style={{ padding: '6px 10px' }}>
-                        <Link to="/HooksPage/">HooksPage</Link>
+                        <Link style={{ color: '#fff'}} to="/HooksPage/">HooksPage</Link>
                     </li>
                 </ul>
             </nav>
