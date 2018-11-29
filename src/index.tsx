@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.less';
-//import AppClass from './pages/AppClass/index';
-import AppHooks from './pages/AppHooks/index';
+import AppRouter from './AppRouter';
 
-ReactDOM.render(<AppHooks />, document.getElementById('root'));
+ReactDOM.render(<AppRouter />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
