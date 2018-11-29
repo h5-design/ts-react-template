@@ -82,6 +82,7 @@ module.exports = merge(baseWebpackConfig, {
               ),
               plugins: [
                 [
+                  //集成 ts loader
                   require.resolve('babel-plugin-named-asset-import'),
                   {
                     loaderMap: {
@@ -120,6 +121,8 @@ module.exports = merge(baseWebpackConfig, {
             exclude: /\.module\.css$/,
             use: getStyleLoaders({
               importLoaders: 1,
+              modules:true,
+              localIdentName:'[name]__[local]-[hash:base64:6]'
             }),
           },
           {
@@ -133,7 +136,11 @@ module.exports = merge(baseWebpackConfig, {
           {
             test: /\.(scss|sass)$/,
             exclude: /\.module\.(scss|sass)$/,
-            use: getStyleLoaders({ importLoaders: 2 }, 'sass-loader'),
+            use: getStyleLoaders({
+                importLoaders: 2,
+                modules:true,
+                localIdentName:'[name]__[local]-[hash:base64:6]'
+            }, 'sass-loader'),
           },
           {
             test: /\.module\.(scss|sass)$/,
@@ -145,6 +152,26 @@ module.exports = merge(baseWebpackConfig, {
               },
               'sass-loader'
             ),
+          },
+          {
+              test: /\.(less)$/,
+              exclude: /\.module\.(less)$/,
+              use: getStyleLoaders({
+                  importLoaders: 2,
+                  modules:true,
+                  localIdentName:'[name]__[local]-[hash:base64:6]'
+              }, 'less-loader'),
+          },
+          {
+              test: /\.module\.(less)$/,
+              use: getStyleLoaders(
+                  {
+                      importLoaders: 2,
+                      modules: true,
+                      getLocalIdent: getCSSModuleLocalIdent,
+                  },
+                  'less-loader'
+              ),
           },
           {
               test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
