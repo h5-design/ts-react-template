@@ -87,12 +87,6 @@ module.exports = merge(baseWebpackConfig, {
       path.relative(paths.appSrc, info.absoluteResourcePath)
         .replace(/\\/g, '/'),
   },
-    externals:[
-        {
-            'antd': 'antd',
-            'react': 'react'
-        }
-    ],
   optimization: {
     minimizer: [
       //优化缩小 js 插件
