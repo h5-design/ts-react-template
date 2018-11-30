@@ -27,9 +27,9 @@ const Example = () => {
     return (
         <>
             <span key={1}>You clicked {count} times</span>
-            <span style={{ display: 'inline-block', padding: '10px',color: '#fff', backgroundColor: 'red' }} key={2} onClick={handle}>
+            <button style={{ display: 'inline-block', padding: '10px',color: '#fff', backgroundColor: 'red' }} key={2} onClick={handle}>
                 click me
-            </span>
+            </button>
         </>
 
     )

@@ -117,45 +117,43 @@ module.exports = merge(baseWebpackConfig, {
             },
           },
           {
-            test: /\.css$/,
-            exclude: /\.module\.css$/,
-            use: getStyleLoaders({
-              importLoaders: 1,
-              modules:true,
-              localIdentName:'[name]__[local]-[hash:base64:6]'
-            }),
+              test: /\.css$/,
+              exclude: paths.appNodeModules,
+              use: getStyleLoaders({
+                  importLoaders: 1,
+                  modules:true,
+                  localIdentName:'[name]__[local]-[hash:base64:6]'
+              }),
           },
           {
-            test: /\.module\.css$/,
-            use: getStyleLoaders({
-              importLoaders: 1,
-              modules: true,
-              getLocalIdent: getCSSModuleLocalIdent,
-            }),
+              test: /\.css$/,
+              include: paths.appNodeModules,
+              use: getStyleLoaders({
+                  importLoaders: 1,
+              }),
           },
           {
-            test: /\.(scss|sass)$/,
-            exclude: /\.module\.(scss|sass)$/,
-            use: getStyleLoaders({
-                importLoaders: 2,
-                modules:true,
-                localIdentName:'[name]__[local]-[hash:base64:6]'
-            }, 'sass-loader'),
+              test: /\.(scss|sass)$/,
+              exclude: paths.appNodeModules,
+              use: getStyleLoaders({
+                  importLoaders: 2,
+                  modules:true,
+                  localIdentName:'[name]__[local]-[hash:base64:6]'
+              }, 'sass-loader'),
           },
           {
-            test: /\.module\.(scss|sass)$/,
-            use: getStyleLoaders(
-              {
-                importLoaders: 2,
-                modules: true,
-                getLocalIdent: getCSSModuleLocalIdent,
-              },
-              'sass-loader'
-            ),
+              test: /\.(scss|sass)$/,
+              include: paths.appNodeModules,
+              use: getStyleLoaders(
+                  {
+                      importLoaders: 2,
+                  },
+                  'sass-loader'
+              ),
           },
           {
               test: /\.(less)$/,
-              exclude: /\.module\.(less)$/,
+              exclude: paths.appNodeModules,
               use: getStyleLoaders({
                   importLoaders: 2,
                   modules:true,
@@ -163,12 +161,11 @@ module.exports = merge(baseWebpackConfig, {
               }, 'less-loader'),
           },
           {
-              test: /\.module\.(less)$/,
+              test: /\.(less)$/,
+              include: paths.appNodeModules,
               use: getStyleLoaders(
                   {
                       importLoaders: 2,
-                      modules: true,
-                      getLocalIdent: getCSSModuleLocalIdent,
                   },
                   'less-loader'
               ),
