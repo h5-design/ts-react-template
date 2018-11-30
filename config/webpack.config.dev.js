@@ -117,33 +117,56 @@ module.exports = merge(baseWebpackConfig, {
           },
           {
             test: /\.css$/,
-            exclude: /\.module\.css$/,
+            exclude: paths.appNodeModules,
             use: getStyleLoaders({
               importLoaders: 1,
+              modules:true,
+              localIdentName:'[name]__[local]-[hash:base64:6]'
             }),
           },
           {
-            test: /\.module\.css$/,
+            test: /\.css$/,
+            include: paths.appNodeModules,
             use: getStyleLoaders({
               importLoaders: 1,
-              modules: true,
-              getLocalIdent: getCSSModuleLocalIdent,
             }),
           },
           {
             test: /\.(scss|sass)$/,
-            exclude: /\.module\.(scss|sass)$/,
-            use: getStyleLoaders({ importLoaders: 2 }, 'sass-loader'),
+            exclude: paths.appNodeModules,
+            use: getStyleLoaders({
+              importLoaders: 2,
+              modules:true,
+              localIdentName:'[name]__[local]-[hash:base64:6]'
+            }, 'sass-loader'),
           },
           {
-            test: /\.module\.(scss|sass)$/,
+            test: /\.(scss|sass)$/,
+            include: paths.appNodeModules,
             use: getStyleLoaders(
               {
                 importLoaders: 2,
-                modules: true,
-                getLocalIdent: getCSSModuleLocalIdent,
               },
               'sass-loader'
+            ),
+          },
+          {
+            test: /\.(less)$/,
+            exclude: paths.appNodeModules,
+            use: getStyleLoaders({
+              importLoaders: 2,
+              modules:true,
+              localIdentName:'[name]__[local]-[hash:base64:6]'
+            }, 'less-loader'),
+          },
+          {
+            test: /\.(less)$/,
+            include: paths.appNodeModules,
+            use: getStyleLoaders(
+              {
+                importLoaders: 2,
+              },
+              'less-loader'
             ),
           },
           {
