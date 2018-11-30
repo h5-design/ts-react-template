@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
+import { Button } from 'antd';
 
 const Example = () => {
-    const _useState = useState(0);
+    const _useState:any[] = useState(0);
     let count = _useState[0];
     let setCount = _useState[1];
 
@@ -21,15 +22,15 @@ const Example = () => {
 
 
     const handle = () => {
-        setCount((v)=>v+1)
+        setCount((v:number)=> v + 1 )
     };
 
     return (
         <>
-            <span key={1}>You clicked {count} times</span>
-            <span style={{ display: 'inline-block', padding: '10px',color: '#fff', backgroundColor: 'red' }} key={2} onClick={handle}>
+            <span>You clicked {count} times</span>
+            <Button type="primary" onClick={handle}>
                 click me
-            </span>
+            </Button>
         </>
 
     )

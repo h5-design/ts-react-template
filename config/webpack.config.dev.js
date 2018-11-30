@@ -5,7 +5,6 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
-const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent');
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
 const ManifestPlugin = require('webpack-manifest-plugin');
@@ -15,8 +14,6 @@ const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const publicPath = '/';
 const publicUrl = '';
 const env = getClientEnvironment(publicUrl);
-
-
 
 //供用的样式 loader
 const getStyleLoaders = (cssOptions, preProcessor) => {
@@ -92,6 +89,7 @@ module.exports = merge(baseWebpackConfig, {
                     },
                   },
                 ],
+                ["import", {"libraryName": "antd", "style": "css"}]
               ],
               cacheDirectory: true,
               cacheCompression: false,
@@ -118,7 +116,7 @@ module.exports = merge(baseWebpackConfig, {
           },
           {
             test: /\.css$/,
-            exclude: /\.module\.css$/,
+            exclude: paths.appNodeModules,
             use: getStyleLoaders({
               importLoaders: 1,
               modules:true,
@@ -126,16 +124,15 @@ module.exports = merge(baseWebpackConfig, {
             }),
           },
           {
-            test: /\.module\.css$/,
+            test: /\.css$/,
+            include: paths.appNodeModules,
             use: getStyleLoaders({
               importLoaders: 1,
-              modules: true,
-              getLocalIdent: getCSSModuleLocalIdent,
             }),
           },
           {
             test: /\.(scss|sass)$/,
-            exclude: /\.module\.(scss|sass)$/,
+            exclude: paths.appNodeModules,
             use: getStyleLoaders({
                 importLoaders: 2,
                 modules:true,
@@ -143,19 +140,18 @@ module.exports = merge(baseWebpackConfig, {
             }, 'sass-loader'),
           },
           {
-            test: /\.module\.(scss|sass)$/,
+            test: /\.(scss|sass)$/,
+            include: paths.appNodeModules,
             use: getStyleLoaders(
               {
                 importLoaders: 2,
-                modules: true,
-                getLocalIdent: getCSSModuleLocalIdent,
               },
               'sass-loader'
             ),
           },
           {
               test: /\.(less)$/,
-              exclude: /\.module\.(less)$/,
+              exclude: paths.appNodeModules,
               use: getStyleLoaders({
                   importLoaders: 2,
                   modules:true,
@@ -163,12 +159,11 @@ module.exports = merge(baseWebpackConfig, {
               }, 'less-loader'),
           },
           {
-              test: /\.module\.(less)$/,
+              test: /\.(less)$/,
+              include: paths.appNodeModules,
               use: getStyleLoaders(
                   {
                       importLoaders: 2,
-                      modules: true,
-                      getLocalIdent: getCSSModuleLocalIdent,
                   },
                   'less-loader'
               ),

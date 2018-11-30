@@ -10,7 +10,6 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const safePostCssParser = require('postcss-safe-parser');
 const ManifestPlugin = require('webpack-manifest-plugin');
 
-const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent');
 const paths = require('./paths');
 const getClientEnvironment = require('./env');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
@@ -88,6 +87,12 @@ module.exports = merge(baseWebpackConfig, {
       path.relative(paths.appSrc, info.absoluteResourcePath)
         .replace(/\\/g, '/'),
   },
+    externals:[
+        {
+            'antd': 'antd',
+            'react': 'react'
+        }
+    ],
   optimization: {
     minimizer: [
       //优化缩小 js 插件
@@ -155,6 +160,7 @@ module.exports = merge(baseWebpackConfig, {
                     },
                   },
                 ],
+                ["import", {"libraryName": "antd", "style": "css"}]
               ],
               cacheDirectory: true,
               // Save disk space when time isn't as important
@@ -184,7 +190,7 @@ module.exports = merge(baseWebpackConfig, {
           },
           {
             test: /\.css$/,
-            exclude: /\.module\.css$/,
+            exclude: paths.appNodeModules,
             loader: getStyleLoaders({
               importLoaders: 1,
               sourceMap: shouldUseSourceMap,
@@ -194,17 +200,16 @@ module.exports = merge(baseWebpackConfig, {
             sideEffects: true,
           },
           {
-            test: /\.module\.css$/,
+            test: /\.css$/,
+            include: paths.appNodeModules,
             loader: getStyleLoaders({
               importLoaders: 1,
               sourceMap: shouldUseSourceMap,
-              modules: true,
-              getLocalIdent: getCSSModuleLocalIdent,
             }),
           },
           {
             test: /\.(scss|sass)$/,
-            exclude: /\.module\.(scss|sass)$/,
+            exclude: paths.appNodeModules,
             loader: getStyleLoaders(
               {
                 importLoaders: 2,
@@ -217,20 +222,19 @@ module.exports = merge(baseWebpackConfig, {
             sideEffects: true,
           },
           {
-            test: /\.module\.(scss|sass)$/,
+            test: /\.(scss|sass)$/,
+            include: paths.appNodeModules,
             loader: getStyleLoaders(
               {
                 importLoaders: 2,
                 sourceMap: shouldUseSourceMap,
-                modules: true,
-                getLocalIdent: getCSSModuleLocalIdent,
               },
               'sass-loader'
             ),
           },
           {
               test: /\.(less)$/,
-              exclude: /\.module\.(less)$/,
+              exclude: paths.appNodeModules,
               loader: getStyleLoaders(
                   {
                       importLoaders: 2,
@@ -243,13 +247,12 @@ module.exports = merge(baseWebpackConfig, {
               sideEffects: true,
           },
           {
-              test: /\.module\.(less)$/,
+              test: /\.(less)$/,
+              include: paths.appNodeModules,
               loader: getStyleLoaders(
                   {
                       importLoaders: 2,
                       sourceMap: shouldUseSourceMap,
-                      modules: true,
-                      getLocalIdent: getCSSModuleLocalIdent,
                   },
                   'less-loader'
               ),
