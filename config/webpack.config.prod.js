@@ -184,7 +184,7 @@ module.exports = merge(baseWebpackConfig, {
           },
           {
             test: /\.css$/,
-            exclude: /\.module\.css$/,
+            exclude: paths.appNodeModules,
             loader: getStyleLoaders({
               importLoaders: 1,
               sourceMap: shouldUseSourceMap,
@@ -194,17 +194,16 @@ module.exports = merge(baseWebpackConfig, {
             sideEffects: true,
           },
           {
-            test: /\.module\.css$/,
+            test: /\.css$/,
+            include: paths.appNodeModules,
             loader: getStyleLoaders({
               importLoaders: 1,
               sourceMap: shouldUseSourceMap,
-              modules: true,
-              getLocalIdent: getCSSModuleLocalIdent,
             }),
           },
           {
             test: /\.(scss|sass)$/,
-            exclude: /\.module\.(scss|sass)$/,
+            exclude: paths.appNodeModules,
             loader: getStyleLoaders(
               {
                 importLoaders: 2,
@@ -217,42 +216,40 @@ module.exports = merge(baseWebpackConfig, {
             sideEffects: true,
           },
           {
-            test: /\.module\.(scss|sass)$/,
+            test: /\.(scss|sass)$/,
+            include: paths.appNodeModules,
             loader: getStyleLoaders(
               {
                 importLoaders: 2,
                 sourceMap: shouldUseSourceMap,
-                modules: true,
-                getLocalIdent: getCSSModuleLocalIdent,
               },
               'sass-loader'
             ),
           },
           {
-              test: /\.(less)$/,
-              exclude: /\.module\.(less)$/,
-              loader: getStyleLoaders(
-                  {
-                      importLoaders: 2,
-                      sourceMap: shouldUseSourceMap,
-                      modules:true,
-                      localIdentName:'[name]__[local]-[hash:base64:6]'
-                  },
-                  'less-loader'
-              ),
-              sideEffects: true,
+            test: /\.(less)$/,
+            exclude: paths.appNodeModules,
+            loader: getStyleLoaders(
+              {
+                importLoaders: 2,
+                sourceMap: shouldUseSourceMap,
+                modules:true,
+                localIdentName:'[name]__[local]-[hash:base64:6]'
+              },
+              'less-loader'
+            ),
+            sideEffects: true,
           },
           {
-              test: /\.module\.(less)$/,
-              loader: getStyleLoaders(
-                  {
-                      importLoaders: 2,
-                      sourceMap: shouldUseSourceMap,
-                      modules: true,
-                      getLocalIdent: getCSSModuleLocalIdent,
-                  },
-                  'less-loader'
-              ),
+            test: /\.(less)$/,
+            include: paths.appNodeModules,
+            loader: getStyleLoaders(
+              {
+                importLoaders: 2,
+                sourceMap: shouldUseSourceMap,
+              },
+              'less-loader'
+            ),
           },
           {
               test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
