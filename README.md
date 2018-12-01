@@ -1,14 +1,29 @@
 # ts-react-template
 
 
-## react && ts 脚手架
+## react && ts 脚手架模板
 
 
-## Change
+## base
 
-[CHANGELOG]('./CHANGELOG.md')
+✅ typescript
 
-## Todo
+✅  webpack 4
 
-[TODO]('./TODO.md')
+✅  react 16.7 hooks
 
+✅  react-router
+
+✅  ts lint
+
+✅  es lint
+
+✅  jest 单测
+
+✅  css/less/scss/sass module 相关配置完成
+
+✅  webpack 打包优化视图完成
+
+✅  antd 懒加载
+
+✅  webpack react-router chunks 分割
