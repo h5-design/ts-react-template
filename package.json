@@ -1,5 +1,5 @@
 {
-  "name": "creat-h5-react",
+  "name": "create-h5-react",
   "version": "0.1.0",
   "dependencies": {
     "chalk": "^2.4.1",
@@ -16,7 +16,7 @@
   "description": "",
   "main": "index.js",
   "bin": {
-    "creat-h5-react": "./bin/index.js"
+    "create-h5-react": "./bin/index.js"
   },
   "repository": {
     "type": "git",

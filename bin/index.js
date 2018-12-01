@@ -12,8 +12,8 @@ program.on('--help', function(){
   console.log('');
   console.log('  Examples:');
   console.log('');
-  console.log('    $ creat-h5-react init');
-  console.log('    $ creat-h5-react i');
+  console.log('    $ create-h5-react init');
+  console.log('    $ create-h5-react i');
   console.log('');
 });
 

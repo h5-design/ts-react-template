@@ -4,18 +4,24 @@
 ## react && ts 脚手架
 
 
+
 ## Use
 ```bash
-creat-h5-react init
+create-h5-react init
+```
+or
+
+```bash
+create-h5-react i
 ```
 
 ## Template
 
-- react-js版
+###  react-js版
 
-- react-ts版
+### react-ts版
 
-- react-ts-router版
+### react-ts-router版
 
-- react-ts-router-antd版
+### react-ts-router-antd版
 
