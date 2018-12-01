@@ -1,15 +1,32 @@
 {
-  "name": "demo",
+  "name": "creat-h5-react",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "chalk": "^2.4.1",
+    "co": "^4.6.0",
+    "commander": "^2.19.0",
+    "figlet": "^1.2.1",
+    "gradient-string": "^1.2.0",
+    "inquirer": "^6.2.0"
   },
   "scripts": {
-    "start": "node scripts/start.js",
-    "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "devDependencies": {
-    "webpack-merge": "^4.1.4"
-  }
+  "devDependencies": {},
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "creat-h5-react": "./bin/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/h5-design/ts-react-template.git"
+  },
+  "author": "xuzhiyuan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/h5-design/ts-react-template/issues"
+  },
+  "homepage": "https://github.com/h5-design/ts-react-template#readme"
 }

@@ -4,11 +4,18 @@
 ## react && ts 脚手架
 
 
-## Change
+## Use
+```bash
+creat-h5-react init
+```
 
-[CHANGELOG]('./CHANGELOG.md')
+## Template
 
-## Todo
+- react-js版
 
-[TODO]('./TODO.md')
+- react-ts版
+
+- react-ts-router版
+
+- react-ts-router-antd版
 
